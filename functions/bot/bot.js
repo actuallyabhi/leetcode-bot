@@ -37,7 +37,7 @@ bot.start(ctx => {
             options.map(option => Markup.button.callback(option, `select:${option}`))
           );
 
-        return ctx.reply(welcomeMessage, keyboard.extra());
+        return ctx.reply(welcomeMessage, keyboard);
     } catch (e) {
         console.error("error in start action:", e);
         return ctx.reply("Error occurred");
