@@ -34,8 +34,8 @@ bot.start(ctx => {
         ]
 
         const keyboard = Markup.inlineKeyboard(
-            options.map(option => Markup.callbackButton(option, `select:${option}`))
-        );
+            options.map(option => Markup.button.callback(option, `select:${option}`))
+          );
 
         return ctx.reply(welcomeMessage, keyboard.extra());
     } catch (e) {
