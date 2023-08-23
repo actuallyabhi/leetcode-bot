@@ -111,9 +111,8 @@ bot.help(ctx => {
 bot.hears(/Array|String|Linked List|Doubly-Linked List|Stack|Queue|Tree|Graph|Greedy|Hash Function|Hash Table|Heap \(Priority Queue\)|Backtracking|Binary Search|Binary Search Tree|Binary Tree|Dynamic Programming|Breadth-First Search/, ctx => {
     const topic = ctx.message.text;
     const username = ctx.message.from.username;
-    console.log(ctx.message);
+    // console.log(ctx.message);
     try {
-    (   async () => {
         fetch(url, {
             method: 'POST',
             query: {
@@ -123,7 +122,6 @@ bot.hears(/Array|String|Linked List|Doubly-Linked List|Stack|Queue|Tree|Graph|Gr
             }
         })
         .then(response => console.log(response))
-    })();
 
 
     } catch (e) {   
