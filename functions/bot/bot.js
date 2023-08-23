@@ -32,8 +32,8 @@ function handleTopicSelection(ctx, message) {
 bot.start(ctx => handleTopicSelection(ctx, "Welcome"));
 // bot handle reply for the topic in a single function
 bot.hears(/Array|String|Linked List|Doubly-Linked List|Stack|Queue|Tree|Graph|Greedy|Hash Function|Hash Table|Heap \(Priority Queue\)|Backtracking|Binary Search|Binary Search Tree|Binary Tree|Dynamic Programming|Breadth-First Search/, ctx => {
+    const topic = ctx.message.text;
     try {
-        const topic = ctx.message.text;
         // do something with the topic
         console.log(topic)
     } catch (e) {   
