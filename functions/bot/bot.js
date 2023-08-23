@@ -112,7 +112,6 @@ bot.help(ctx => {
 
 // bot handle reply for the topic in a single function
 bot.hears(/Array|String|Linked List|Doubly-Linked List|Stack|Queue|Tree|Graph|Greedy|Hash Function|Hash Table|Heap \(Priority Queue\)|Backtracking|Binary Search|Binary Search Tree|Binary Tree|Dynamic Programming|Breadth-First Search/, ctx => {
-    ctx.reply({ reply_markup: { remove_keyboard: true } })
     const topic = ctx.message.text;
     const username = ctx.message.from.username;
     try {
@@ -123,7 +122,7 @@ bot.hears(/Array|String|Linked List|Doubly-Linked List|Stack|Queue|Tree|Graph|Gr
         console.error("error in topic selection:", e);
         return ctx.reply("Error occurred");
     }
-    ctx.reply("You have selected " + topic + " as the topic to receive problems")
+    ctx.replyWithHTML("You have selected <b>" + topic + "</b> as the topic to receive problems")
     return ctx.replyWithHTML("Topic: <b>/change_topic</b> \n \n Difficulty: <b>/change_difficulty</b> \n \n Time: <b>/change_time</b> \n \n Number of Problems <b>/change_number</b>")
 });
 
@@ -139,7 +138,7 @@ bot.hears(/Easy|Medium|Hard|All/, ctx => {
         console.error("error in difficulty selection:", e);
         return ctx.reply("Error occurred");
     }
-    return ctx.reply("You have selected " + difficulty + " difficulty problems");
+    return ctx.replyWithHTML("You have selected <b>" + difficulty + "</b> as the difficulty of the problems to receive")
 });
 
 // bot handle reply for the time in a single function
@@ -154,7 +153,12 @@ bot.hears(/6:00 AM|9:00 AM|12:00 PM|3:00 PM|6:00 PM|9:00 PM/, ctx => {
         console.error("error in time selection:", e);
         return ctx.reply("Error occurred");
     }
-    return ctx.reply("You have selected " + time + " as the time to receive a new problem");
+    return ctx.replyWithHTML("You have selected <b>" + time + "</b> as the time to receive a new problem")
+});
+
+// handle any other message
+bot.on('message', ctx => {
+    return ctx.reply("Greetings! \n \n To get list of available commands, /help")
 });
 
 // bot handle reply for the number in a single function
@@ -169,7 +173,7 @@ bot.hears(/1|2|3|4|5/, ctx => {
         console.error("error in number selection:", e);
         return ctx.reply("Error occurred");
     }
-    ctx.reply("You have selected " + number + " as the number of problems to receive")
+    ctx.replyWithHTML("You have selected <b>" + number + "</b> as the number of problems to receive")
     return ctx.reply("You have successfully set up your preferences. You will receive a new problem at the selected time");
 });
 
