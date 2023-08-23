@@ -156,6 +156,7 @@ bot.hears(/6:00 AM|9:00 AM|12:00 PM|3:00 PM|6:00 PM|9:00 PM/, ctx => {
 // bot handle reply for the number in a single function
 bot.hears(/1|2|3|4|5/, ctx => {
     const number = ctx.message.text;
+    const username = ctx.message.from.username;
     try {
         fetch("https://script.google.com/macros/s/AKfycbw584DxzF9SghwdqrlI8rF6MfGZnwY2wLWGJp1p_BZAp7fhLh0QwvRBbBmawSZV06-O/exec"+ "?username=" + username + "&numProblems=" + number, {
             method: 'POST'
