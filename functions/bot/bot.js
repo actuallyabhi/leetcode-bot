@@ -94,8 +94,7 @@ function handleNumberSelection(ctx, message) {
 }
 
 bot.start(ctx => {
-    ctx.reply("Welcome to the Leetcode Bot. \n \n Here you can receive a new problem to solve at a time of your choice. \n \n To get started, select a topic from the list below.");
-    return handleTopicSelection(ctx, "Select a topic")
+    return handleTopicSelection(ctx, "Welcome to the Leetcode Bot. \n \n Here you can receive a new problem to solve at a time of your choice. \n \n To get started, select a topic from the list below.")
 });
 
 bot.help(ctx => {
