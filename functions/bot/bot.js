@@ -128,7 +128,9 @@ bot.hears(/Easy|Medium|Hard|All/, ctx => {
     const difficulty = ctx.message.text;
     const username = ctx.message.from.username;
     try {
-        // do something with the difficulty
+        fetch("https://script.google.com/macros/s/AKfycbw584DxzF9SghwdqrlI8rF6MfGZnwY2wLWGJp1p_BZAp7fhLh0QwvRBbBmawSZV06-O/exec"+ "?username=" + username + "&difficulty=" + difficulty, {
+            method: 'POST'
+        })
     } catch (e) {
         console.error("error in difficulty selection:", e);
         return ctx.reply("Error occurred");
@@ -139,8 +141,11 @@ bot.hears(/Easy|Medium|Hard|All/, ctx => {
 // bot handle reply for the time in a single function
 bot.hears(/6:00 AM|9:00 AM|12:00 PM|3:00 PM|6:00 PM|9:00 PM/, ctx => {
     const time = ctx.message.text;
+    const username = ctx.message.from.username;
     try {
-        // do something with the time
+        fetch("https://script.google.com/macros/s/AKfycbw584DxzF9SghwdqrlI8rF6MfGZnwY2wLWGJp1p_BZAp7fhLh0QwvRBbBmawSZV06-O/exec"+ "?username=" + username + "&time=" + time, {
+            method: 'POST'
+        })
     } catch (e) {
         console.error("error in time selection:", e);
         return ctx.reply("Error occurred");
@@ -152,7 +157,9 @@ bot.hears(/6:00 AM|9:00 AM|12:00 PM|3:00 PM|6:00 PM|9:00 PM/, ctx => {
 bot.hears(/1|2|3|4|5/, ctx => {
     const number = ctx.message.text;
     try {
-        // do something with the number
+        fetch("https://script.google.com/macros/s/AKfycbw584DxzF9SghwdqrlI8rF6MfGZnwY2wLWGJp1p_BZAp7fhLh0QwvRBbBmawSZV06-O/exec"+ "?username=" + username + "&numProblems=" + number, {
+            method: 'POST'
+        })
     } catch (e) {
         console.error("error in number selection:", e);
         return ctx.reply("Error occurred");
