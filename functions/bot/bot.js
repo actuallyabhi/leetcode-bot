@@ -92,17 +92,7 @@ function handleNumberSelection(ctx, message) {
     }
 }
 
-// handle /start command
-function handleStart(ctx) {
-    ctx.reply("Welcome to LeetCode Bot. \n\n /help to see available commands \n\n Select a topic");
-    ctx.reply("Select a topic");
-    handleTopicSelection(ctx, "Select a topic");
-    handleDifficultySelection(ctx, "Select a difficulty");
-    handleTimeSelection(ctx, "Select a time");
-    handleNumberSelection(ctx, "Select a number");
-
-}
-bot.start(ctx => handleStart(ctx));
+bot.start(ctx => handleTopicSelection(ctx, "Welcome to LeetCode Bot. \n /help to see available commands"));
 
 bot.help(ctx => {
     const commandsList = [
@@ -126,7 +116,7 @@ bot.hears(/Array|String|Linked List|Doubly-Linked List|Stack|Queue|Tree|Graph|Gr
         console.error("error in topic selection:", e);
         return ctx.reply("Error occurred");
     }
-    return ctx.reply("You have selected " + topic);
+    ctx.replyWithHTML("You have selected <b>" + topic + "</b> as the topic to receive problems. <br> <br> YOu can also change the topic by using the command <b>/change_topic</b> <br> <br> You can also change the difficulty by using the command <b>/change_difficulty</b> <br> <br> You can also change the time by using the command <b>/change_time</b> <br> <br> You can also change the number of problems by using the command <b>/change_number</b>")
 });
 
 // bot handle reply for the difficulty in a single function
