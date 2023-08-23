@@ -116,7 +116,7 @@ bot.hears(/Array|String|Linked List|Doubly-Linked List|Stack|Queue|Tree|Graph|Gr
         console.error("error in topic selection:", e);
         return ctx.reply("Error occurred");
     }
-    ctx.replyWithHTML("You have selected <b>" + topic + "</b> as the topic to receive problems. <br> <br> YOu can also change the topic by using the command <b>/change_topic</b> <br> <br> You can also change the difficulty by using the command <b>/change_difficulty</b> <br> <br> You can also change the time by using the command <b>/change_time</b> <br> <br> You can also change the number of problems by using the command <b>/change_number</b>")
+    return ctx.replyWithHTML("You have selected <b>" + topic + "</b> as the topic to receive problems. <br> <br> YOu can also change the topic by using the command <b>/change_topic</b> <br> <br> You can also change the difficulty by using the command <b>/change_difficulty</b> <br> <br> You can also change the time by using the command <b>/change_time</b> <br> <br> You can also change the number of problems by using the command <b>/change_number</b>")
 });
 
 // bot handle reply for the difficulty in a single function
