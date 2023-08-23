@@ -1,5 +1,6 @@
 const { Telegraf } = require("telegraf")
-const bot = new Telegraf(process.env.BOT_TOKEN)
+const bot = new Telegraf(process.env.BOT_TOKEN) 
+const url = "https://script.google.com/macros/s/AKfycbw584DxzF9SghwdqrlI8rF6MfGZnwY2wLWGJp1p_BZAp7fhLh0QwvRBbBmawSZV06-O/exec"
 
 // Common function to handle topic selection
 function handleTopicSelection(ctx, message) {
@@ -109,8 +110,21 @@ bot.help(ctx => {
 // bot handle reply for the topic in a single function
 bot.hears(/Array|String|Linked List|Doubly-Linked List|Stack|Queue|Tree|Graph|Greedy|Hash Function|Hash Table|Heap \(Priority Queue\)|Backtracking|Binary Search|Binary Search Tree|Binary Tree|Dynamic Programming|Breadth-First Search/, ctx => {
     const topic = ctx.message.text;
+    const username = ctx.message.from.username;
+    console.log(ctx.message);
     try {
-        // do something with the topic
+    (   async () => {
+        fetch(url, {
+            method: 'POST',
+            query: {
+                action: "addUser",
+                username: username,
+                topic: topic
+            }
+        })
+        .then(response => console.log(response))
+    })();
+
 
     } catch (e) {   
         console.error("error in topic selection:", e);
