@@ -92,7 +92,17 @@ function handleNumberSelection(ctx, message) {
     }
 }
 
-bot.start(ctx => handleTopicSelection(ctx, "Welcome to LeetCode Bot. \n\n /help to see available commands \n\n Select a topic"));
+// handle /start command
+function handleStart(ctx) {
+    ctx.reply("Welcome to LeetCode Bot. \n\n /help to see available commands \n\n Select a topic");
+    ctx.reply("Select a topic");
+    handleTopicSelection(ctx, "Select a topic");
+    handleDifficultySelection(ctx, "Select a difficulty");
+    handleTimeSelection(ctx, "Select a time");
+    handleNumberSelection(ctx, "Select a number");
+
+}
+bot.start(ctx => handleStart(ctx));
 
 bot.help(ctx => {
     const commandsList = [
