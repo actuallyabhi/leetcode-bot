@@ -1,4 +1,5 @@
-const { Telegraf, Markup } = require("telegraf")
+const { Telegraf, Markup } = require("telegraf");
+const { keyboard } = require("telegraf/typings/markup");
 const bot = new Telegraf(process.env.BOT_TOKEN) 
 const url = "https://script.google.com/macros/s/AKfycbw584DxzF9SghwdqrlI8rF6MfGZnwY2wLWGJp1p_BZAp7fhLh0QwvRBbBmawSZV06-O/exec"
 
@@ -111,8 +112,7 @@ bot.help(ctx => {
 
 // bot handle reply for the topic in a single function
 bot.hears(/Array|String|Linked List|Doubly-Linked List|Stack|Queue|Tree|Graph|Greedy|Hash Function|Hash Table|Heap \(Priority Queue\)|Backtracking|Binary Search|Binary Search Tree|Binary Tree|Dynamic Programming|Breadth-First Search/, ctx => {
-    // clear keyboard markup 
-    Markup.removeKeyboard();
+    ctx.reply({ reply_markup: { remove_keyboard: true } })
     const topic = ctx.message.text;
     const username = ctx.message.from.username;
     try {
@@ -124,7 +124,7 @@ bot.hears(/Array|String|Linked List|Doubly-Linked List|Stack|Queue|Tree|Graph|Gr
         return ctx.reply("Error occurred");
     }
     ctx.reply("You have selected " + topic + " as the topic to receive problems")
-    return ctx.replyWithHTML("Topic:  <b>/change_topic</b> \n \n Difficulty: <b>/change_difficulty</b> \n \n Time: <b>/change_time</b> \n \n Number of Problems <b>/change_number</b>")
+    return ctx.replyWithHTML("Topic: <b>/change_topic</b> \n \n Difficulty: <b>/change_difficulty</b> \n \n Time: <b>/change_time</b> \n \n Number of Problems <b>/change_number</b>")
 });
 
 // bot handle reply for the difficulty in a single function
