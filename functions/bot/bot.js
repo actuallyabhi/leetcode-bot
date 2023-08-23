@@ -116,9 +116,6 @@ bot.hears(/Array|String|Linked List|Doubly-Linked List|Stack|Queue|Tree|Graph|Gr
         fetch("https://script.google.com/macros/s/AKfycbw584DxzF9SghwdqrlI8rF6MfGZnwY2wLWGJp1p_BZAp7fhLh0QwvRBbBmawSZV06-O/exec"+ "?action=addUser&username=" + username + "&topic=" + topic, {
             method: 'POST'
         })
-        .then(response => console.log(response))
-
-
     } catch (e) {   
         console.error("error in topic selection:", e);
         return ctx.reply("Error occurred");
