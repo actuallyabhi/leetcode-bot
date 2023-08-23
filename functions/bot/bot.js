@@ -1,5 +1,4 @@
-const { Telegraf, Markup } = require("telegraf");
-const { keyboard } = require("telegraf/typings/markup");
+const { Telegraf, } = require("telegraf");
 const bot = new Telegraf(process.env.BOT_TOKEN) 
 const url = "https://script.google.com/macros/s/AKfycbw584DxzF9SghwdqrlI8rF6MfGZnwY2wLWGJp1p_BZAp7fhLh0QwvRBbBmawSZV06-O/exec"
 
