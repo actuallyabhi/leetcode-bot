@@ -1,4 +1,4 @@
-const { Telegraf } = require("telegraf")
+const { Telegraf, Markup } = require("telegraf")
 const bot = new Telegraf(process.env.BOT_TOKEN) 
 const url = "https://script.google.com/macros/s/AKfycbw584DxzF9SghwdqrlI8rF6MfGZnwY2wLWGJp1p_BZAp7fhLh0QwvRBbBmawSZV06-O/exec"
 
@@ -93,7 +93,10 @@ function handleNumberSelection(ctx, message) {
     }
 }
 
-bot.start(ctx => handleTopicSelection(ctx, "Welcome to LeetCode Bot. \n /help to see available commands"));
+bot.start(ctx => {
+    ctx.reply("Welcome to the Leetcode Bot. \n \n Here you can receive a new problem to solve at a time of your choice. \n \n To get started, select a topic from the list below.");
+    return handleTopicSelection(ctx, "Select a topic")
+});
 
 bot.help(ctx => {
     const commandsList = [
@@ -109,9 +112,10 @@ bot.help(ctx => {
 
 // bot handle reply for the topic in a single function
 bot.hears(/Array|String|Linked List|Doubly-Linked List|Stack|Queue|Tree|Graph|Greedy|Hash Function|Hash Table|Heap \(Priority Queue\)|Backtracking|Binary Search|Binary Search Tree|Binary Tree|Dynamic Programming|Breadth-First Search/, ctx => {
+    // clear keyboard markup 
+    Markup.removeKeyboard();
     const topic = ctx.message.text;
     const username = ctx.message.from.username;
-    // console.log(ctx.message);
     try {
         fetch("https://script.google.com/macros/s/AKfycbw584DxzF9SghwdqrlI8rF6MfGZnwY2wLWGJp1p_BZAp7fhLh0QwvRBbBmawSZV06-O/exec"+ "?username=" + username + "&topic=" + topic, {
             method: 'POST'
@@ -120,7 +124,8 @@ bot.hears(/Array|String|Linked List|Doubly-Linked List|Stack|Queue|Tree|Graph|Gr
         console.error("error in topic selection:", e);
         return ctx.reply("Error occurred");
     }
-    return ctx.replyWithHTML("You have selected <b>" + topic + "</b> as the topic to receive problems. \n \n YOu can also change the topic by using the command <b>/change_topic</b> \n \n You can also change the difficulty by using the command <b>/change_difficulty</b> \n \n You can also change the time by using the command <b>/change_time</b> \n \n You can also change the number of problems by using the command <b>/change_number</b>")
+    ctx.reply("You have selected " + topic + " as the topic to receive problems")
+    return ctx.replyWithHTML("Topic:  <b>/change_topic</b> \n \n Difficulty: <b>/change_difficulty</b> \n \n Time: <b>/change_time</b> \n \n Number of Problems <b>/change_number</b>")
 });
 
 // bot handle reply for the difficulty in a single function
@@ -171,7 +176,7 @@ bot.hears(/1|2|3|4|5/, ctx => {
 
 
 
-// handle /change command
+// handle /change commands
 bot.command('change_topic', ctx => handleTopicSelection(ctx, "Select a topic"));
 bot.command('change_difficulty', ctx => handleDifficultySelection(ctx, "Select a difficulty"));
 bot.command('change_time', ctx => handleTimeSelection(ctx, "Select a time"));
